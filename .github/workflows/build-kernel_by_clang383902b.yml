@@ -59,7 +59,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir clang-aosp
-        git clone https://github.com/tomxi1997/Toolchain.git clang-aosp --depth=1
+        git clone https://github.com/kdrag0n/proton-clang.git clang-aosp --depth=1
           
         
 
@@ -172,15 +172,11 @@ jobs:
             make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-  
         fi
         
-        if [ ${{ env.ENABLE_CCACHE }} = true ]; then
-            export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_clang/clang-r383902b-11.0.2/bin:$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_gcc/aarch64-linux-android-4.9/bin:$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_gcc/arm-linux-androideabi-4.9/bin:$PATH
-            make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi- 
-        else
-            export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_clang/clang-r383902b-11.0.2/bin:$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_gcc/aarch64-linux-android-4.9/bin:$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/google_gcc/arm-linux-androideabi-4.9/bin:$PATH
-            make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-  
-        fi
+        
+            export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$PATH
+            make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- 
+        
 
     - name: Check a kernel output files
       run: |
