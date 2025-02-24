@@ -8,6 +8,8 @@
 
 Fork 本仓库到你的储存库然后按照以下内容编辑 config.env，之后点击`Star`或`Action`，在左侧可看见`Build Kernel`选项，点击选项会看见右边的大对话框的上面会有`Run workflows`点击它会启动构建。
 
+--预设了radmi note 9 pro 的内核地址和boot.img
+
 一般来说主要修改
 
 ### Kernel Source
