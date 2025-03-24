@@ -154,7 +154,7 @@ jobs:
         ./check-kernel-config $GITHUB_WORKSPACE/kernel_workspace/android-kernel/arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} -w
         
     - name: Setup ccache
-      if: env.ENABLE_CCACHE == 'true'
+      if: env.ENABLE_CCACHE == 'false'
       uses: hendrikmuhs/ccache-action@v1.2
       with:
         key: build-kernel-${{ env.DEVICE }}${{ env.UPLOADNAME }}
