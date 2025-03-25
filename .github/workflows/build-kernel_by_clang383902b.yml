@@ -78,11 +78,11 @@ jobs:
             echo "HAVE_SOURCE_BOOT_IMAGE=true" >> $GITHUB_ENV
         fi
   
-    - name: Setup KernelSU-Next
-      if: env.ENABLE_KERNELSU == 'true'
-      run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs-dev
+    #- name: Setup KernelSU-Next
+     # if: env.ENABLE_KERNELSU == 'true'
+     # run: |
+     #   cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+     #   curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs-dev
       
 
     - name: Setup Configuration for Kernel
