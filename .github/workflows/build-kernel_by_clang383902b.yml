@@ -87,7 +87,26 @@ jobs:
 
     - name: Setup Configuration for Kernel
       run: |
-        
+        #cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+         
+         #    echo "CONFIG_MODULES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+         #    echo "CONFIG_KSU=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+         
+         #if [ ${{ env.ADD_OVERLAYFS_CONFIG }} = true ]; then
+             #echo "CONFIG_OVERLAY_FS=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+         #fi
+         #if [ ${{ env.DISABLE-LTO }} = true ]; then
+            # sed -i 's/CONFIG_LTO=y/CONFIG_LTO=n/' arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+            # sed -i 's/CONFIG_LTO_CLANG=y/CONFIG_LTO_CLANG=n/' arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+         #    sed -i 's/CONFIG_THINLTO=y/CONFIG_THINLTO=n/' arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+         #    echo "CONFIG_LTO_NONE=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+        # fi
+       #  if [ ${{ env.DISABLE_CC_WERROR }} = true ]; then
+       #      echo "CONFIG_CC_WERROR=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+       #  fi
+       #  if [ ${{ env.DISABLE_FST }} = true ]; then
+       #      sed -i "s/CONFIG_CC_STACKPROTECTOR_STRONG=y/# CONFIG_CC_STACKPROTECTOR_STRONG is not set/g" arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+       #  fi
         
     - name: Setup LXC
       if: env.ENABLE_LXC == 'true'
